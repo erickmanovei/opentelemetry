@@ -1,0 +1,10 @@
+model UserProfile {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  profileId String
+  profile   Profile   @relation(fields: [profileId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}

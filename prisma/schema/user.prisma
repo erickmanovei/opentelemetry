@@ -1,0 +1,21 @@
+model User {
+  id                   String        @id @default(uuid())
+  name                 String
+  email                String
+  password             String
+  cpf                  String?
+  phone                String?
+  birthdate            DateTime?     @db.Date()
+  externalId           String?
+  registeredByUserId   String?
+  registeredByUser     User?         @relation("registeredByUser", fields: [registeredByUserId], references: [id])
+  recoveryCode         String?
+  recoveryDate         DateTime?
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+  deletedAt            DateTime?
+  usersRegisteredsByMe User[]        @relation("registeredByUser")
+  userProfiles         UserProfile[]
+
+  @@unique([email])
+}

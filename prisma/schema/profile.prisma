@@ -1,0 +1,9 @@
+model Profile {
+  id           String        @id @default(uuid())
+  name         String
+  tag          String        @unique
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime?
+  userProfiles UserProfile[]
+}
