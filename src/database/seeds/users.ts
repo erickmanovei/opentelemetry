@@ -10,12 +10,12 @@ const users = async (): Promise<void> => {
 
   await prisma.user.upsert({
     where: {
-      email: 'master@teste.com.br',
+      email: 'teste@teste.com',
     },
     update: {},
     create: {
       name: 'Master',
-      email: 'master@teste.com.br',
+      email: 'teste@teste.com',
       cpf: '991.183.310-09',
       password: bcrypt.hashSync('etdsmndr', 8),
       userProfiles: {

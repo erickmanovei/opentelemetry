@@ -1,3 +1,5 @@
+import "./tracing";
+import "./metrics";
 import 'dotenv/config';
 import app from './app';
 

@@ -2,9 +2,19 @@ import { Prisma } from '@prisma/client';
 import prisma from '../../database/prismaClient';
 import { Request, Response } from 'express';
 import paginate from 'utils/paginate';
+import { metrics } from '@opentelemetry/api';
+
+const meter = metrics.getMeter('exemplo-opentelemetry');
+const requestCounter = meter.createCounter('list_users', {
+  description: 'Contador de requisições a usuários',
+});
 
 const index = async (req: Request, res: Response): Promise<Response> => {
   try {
+    requestCounter.add(1, { route: req.path });
+
+    console.log('Métrica incrementada');
+
     const { page = 1, perPage = 10, keywords, search, order } = req.query;
 
     const prismaOptions: Prisma.UserFindManyArgs = {

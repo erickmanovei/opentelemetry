@@ -3,7 +3,7 @@
 import { Router } from 'express';
 import { index } from 'controllers/ProfileController';
 import ensureAuthenticated from 'middlewares/ensureAuthenticated';
-import isAdmin from 'middlewares/isMaster';
+import isMaster from 'middlewares/isMaster';
 
 const router = Router();
 
