@@ -3,7 +3,7 @@ import { verify } from 'jsonwebtoken';
 import prisma from '../database/prismaClient';
 import AppError from '../errors/AppError';
 import authConfig from '../config/auth';
-import { allMetrics } from 'metrics';
+import { counterMetric } from 'otel/metrics';
 
 interface TokenPayload {
   iat: number;
@@ -56,7 +56,7 @@ const ensureAuthenticated = async (
 
     return next();
   } catch {
-    allMetrics.find(e => e.name === 'access_denied')?.metric.add(1);
+    counterMetric('access_denied').add(1);
     throw new AppError('Acesso negado.', 401);
   }
 }

@@ -12,7 +12,7 @@ import { PeriodicExportingMetricReader } from "@opentelemetry/sdk-metrics";
 diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.ERROR);
 
 // Definição do nome do serviço
-const serviceName = "exemplo-opentelemetry";
+const serviceName = process.env.OTEL_PROJECT_NAME ?? '';
 
 // Exportador de traces via OTLP para OpenTelemetry Collector (e depois para o Jaeger)
 const traceExporter = new OTLPTraceExporter({
