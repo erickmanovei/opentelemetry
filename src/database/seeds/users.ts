@@ -17,7 +17,7 @@ const users = async (): Promise<void> => {
       name: 'Master',
       email: 'teste@teste.com',
       cpf: '991.183.310-09',
-      password: bcrypt.hashSync('etdsmndr', 8),
+      password: bcrypt.hashSync('123456', 8),
       userProfiles: {
         create: {
           profileId: masterProfile.id,
