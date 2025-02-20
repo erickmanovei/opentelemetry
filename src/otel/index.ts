@@ -16,13 +16,13 @@ const serviceName = process.env.OTEL_PROJECT_NAME ?? '';
 
 // Exportador de traces via OTLP para OpenTelemetry Collector (e depois para o Jaeger)
 const traceExporter = new OTLPTraceExporter({
-  url: "http://localhost:4317",
+  url: "http://5.189.132.252:4317",
   // compression: CompressionAlgorithm.GZIP,
 });
 
 // Exportador de métricas para Prometheus
 const metricExporter = new OTLPMetricExporter({
-  url: "http://localhost:4317", // Endpoint do OpenTelemetry Collector
+  url: "http://5.189.132.252:4317", // Endpoint do OpenTelemetry Collector
 });
 
 
