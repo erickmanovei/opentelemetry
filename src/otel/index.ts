@@ -14,15 +14,17 @@ diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.ERROR);
 // Definição do nome do serviço
 const serviceName = process.env.OTEL_PROJECT_NAME ?? '';
 
+const { OTEL_COLLECTOR_URL } = process.env;
+
 // Exportador de traces via OTLP para OpenTelemetry Collector (e depois para o Jaeger)
 const traceExporter = new OTLPTraceExporter({
-  url: "http://localhost:4317", // aqui deve-se alterar o localhost pelo ip do servidor que tem o collector
+  url: OTEL_COLLECTOR_URL, // aqui deve-se alterar o localhost pelo ip do servidor que tem o collector
   // compression: CompressionAlgorithm.GZIP,
 });
 
 // Exportador de métricas para Prometheus
 const metricExporter = new OTLPMetricExporter({
-  url: "http://localhost:4317", // aqui deve-se alterar o localhost pelo ip do servidor que tem o collector
+  url: OTEL_COLLECTOR_URL, // aqui deve-se alterar o localhost pelo ip do servidor que tem o collector
 });
 
 
